@@ -40,8 +40,8 @@ public class scr_manAudio : MonoBehaviour {
 	void Awake () {
 		s = this;
 		this.enabled = false;
-		mAudioSND = gameObject.GetComponents<AudioSource>()[1];
 		mAudioBGM = gameObject.GetComponents<AudioSource>()[0];
+		mAudioSND = gameObject.GetComponents<AudioSource>()[1];
 
 		listSound = Resources.LoadAll<AudioClip>("Audio/Sounds");
 
@@ -90,10 +90,23 @@ public class scr_manAudio : MonoBehaviour {
 
 	public void PlayBGM(string name, int _volume = 1, bool isLoop = true)
     {
+		if ((mAudioBGM == null) || (!mAudioBGM.isActiveAndEnabled)) {
+			return;
+		}
+		if (mAudioBGM.isPlaying) {
+			mAudioBGM.Stop ();
+		}
 		mAudioBGM.volume = _volume;
 		mAudioBGM.loop = isLoop;
-		mAudioBGM.clip = Resources.Load<AudioClip>("Audio/Music/bgm" + name);
-		mAudioBGM.Play();
+
+		AudioClip clip = Resources.Load<AudioClip>("Audio/Music/bgm" + name);
+		if (clip == null) {
+			Debug.LogWarning("PlayBGM: Missing AudioClip for name=" + name);
+			return;
+		}
+
+		mAudioBGM.clip = clip;
+		mAudioBGM.Play ();
 
 	}
 	public void FadeBGM(float time, float targetVolume, bool isStop = true)

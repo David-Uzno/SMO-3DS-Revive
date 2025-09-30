@@ -1,4 +1,4 @@
-﻿#define isDebug
+﻿//#define isDebug
 
 using System;
 using System.Collections;
@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class scr_main : MonoBehaviour {
 
 	// Initialization script for Super Mario Odyssey for 3ds, made by Team Alpha.
-	public string version = "0.4";
+	public string version = "0.5";
 
 	//constants
 	[HideInInspector] public static scr_main s;
@@ -38,7 +38,11 @@ public class scr_main : MonoBehaviour {
 	{
 		if (coll.GetComponent<paramObj>() != null && coll.GetComponent<paramObj>().isLOD)
 		{
-			if (coll.transform.GetChild(1).gameObject.name == "Mesh") coll.transform.GetChild(1).gameObject.SetActive(state);
+			Transform child = coll.transform.Find("Mesh");
+			if (child != null)
+			{
+				child.gameObject.SetActive(state);
+			}
 			else { Debug.Log("E: INVALID MESH TREE AT " + coll.name); return; }
 			if (coll.GetComponent<Animator>() != null) coll.GetComponent<Animator>().enabled = state;
 			if (coll.GetComponent<AudioSource>() != null)
@@ -58,6 +62,7 @@ public class scr_main : MonoBehaviour {
 		OnEnable ();
 	}
 	void OnEnable(){
+		version = "0.5";
 		if(s == null)
 		{
 			Debug.ClearDeveloperConsole ();
@@ -87,7 +92,7 @@ public class scr_main : MonoBehaviour {
 		#if isDebug
 			authorVersion = "SMO3DS pre-a" + version;
 		#else
-			authorVersion = "SMO3DS a" + version;
+		authorVersion = "SMO3DS a" + version;
 		#endif
 		transform.GetChild (1).GetChild (0).GetComponent<Text> ().text = authorVersion;
 	}

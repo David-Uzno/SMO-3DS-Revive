@@ -113,10 +113,10 @@ public class MarioController : MonoBehaviour
 			HandleMove();
 			HandleMoveAnim ();
 
-			Debug.Log ("State:" + myState);
-			Debug.Log ("Substate: "+ mySubState);
-			Debug.Log ((wasGrounded?"true" : "false") + ", "+(hasJumped?"true":"false"));
-			Debug.Log ("yvel:" + rb.velocity.y);
+//			Debug.Log ("State:" + myState);
+//			Debug.Log ("Substate: "+ mySubState);
+//			Debug.Log ((wasGrounded?"true" : "false") + ", "+(hasJumped?"true":"false"));
+//			Debug.Log ("yvel:" + rb.velocity.y);
 			// Update Mario's animation and movement based on states
 			switch (myState)
 			{
@@ -144,7 +144,7 @@ public class MarioController : MonoBehaviour
 					switch (mySubState)
 					{
 						case 0:
-							Debug.Log ("Height:"+jumpedHeight);
+//							Debug.Log ("Height:"+jumpedHeight);
 							if ((jumpedHeight > MarioTable.dataJump [jumpType - 1] [1] && !key_jump)
 							      || (jumpedHeight > MarioTable.dataJump [jumpType - 1] [2] && key_jump)
 							      || hasTouchedCeiling) {
@@ -306,7 +306,7 @@ public class MarioController : MonoBehaviour
 
 	public void SetState(eStatePl state, int subState = 0)
 	{
-		Debug.Log ("StateSet:"+state);
+//		Debug.Log ("StateSet:"+state);
 		myPrevState = myState;
 		myState = state;
 		mySubState = subState;
@@ -511,7 +511,7 @@ public class MarioController : MonoBehaviour
 					posGround = transform.position.y;
 					SetState(eStatePl.Landing);
 					wasGrounded = true;
-					Debug.Log("M Ground Enter");
+//					Debug.Log("M Ground Enter");
 				}
 			}
 			else
@@ -552,7 +552,7 @@ public class MarioController : MonoBehaviour
 				wasGrounded = false;
 				posGround = transform.position.y;
 				posLastHigh = transform.position.y;
-				Debug.Log("M Ground Exit");
+//				Debug.Log("M Ground Exit");
 			}
 		}
 
@@ -685,7 +685,7 @@ public class MarioController : MonoBehaviour
 					isAnimOverride = false;
 				else return;
 			}
-			Debug.Log ("Anim: "+animName);
+//			Debug.Log ("Anim: "+animName);
 			isAnimOverride = isPriority;
 			if (transitionTime == -1) transitionTime = 0.3f; // DEFAULT VALUE
 			if (transitionTime == 0 || anim.IsInTransition(0)) anim.Play(animName); // play instant

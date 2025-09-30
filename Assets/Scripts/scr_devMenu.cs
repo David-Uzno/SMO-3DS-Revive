@@ -19,24 +19,24 @@ public class scr_devMenu: MonoBehaviour {
 	private int maxOption = 8;
 	private bool deb_fpsIsShowing = true;
 	private bool deb_enemyIsShowing = false;
-	private bool deb_cmdIsShowing = true;
-	private bool deb_statsIsShowing = true;
+	private bool deb_cmdIsShowing = false;
+	private bool deb_statsIsShowing = false;
 	private int height = 12;
 	private bool canSelect = false;
 	static public string txt_cmdOut = "";
 	private bool hasOpened = false;
 	private bool hasRequestedOpen = false;
 	#if isDebug
-	static string ver = ("Debug Build "+(BuildDate.Date)+" using Unity ");
+	static string ver = ("Debug "+(BuildDate.Date)+" using Unity ");
 	#else
-	static 	string ver = ("Release Build "+(BuildDate.Date)+"using Unity ");
+	static 	string ver = ("Release "+(BuildDate.Date)+"using Unity ");
 	#endif
 
 	void Start() {
 		ver += Application.unityVersion;
-	#if isDebug
-		OpenMenu();
-	#endif
+	//#if isDebug
+	//	OpenMenu();
+	//#endif
 	}
 
 	void ResetVal () {
@@ -74,8 +74,8 @@ public class scr_devMenu: MonoBehaviour {
 		#else
 			bool buttonBack = UnityEngine.N3DS.GamePad.GetButtonHold(N3dsButton.B);
 			bool buttonOK = UnityEngine.N3DS.GamePad.GetButtonHold(N3dsButton.A);
-			isPressOpen = (UnityEngine.N3DS.GamePad.GetButtonHold(N3dsButton.L) && UnityEngine.N3DS.GamePad.GetButtonHold(N3dsButton.Start));
-			isPressClose = (UnityEngine.N3DS.GamePad.GetButtonHold (N3dsButton.R) && UnityEngine.N3DS.GamePad.GetButtonHold (N3dsButton.Start));
+			isPressOpen = (UnityEngine.N3DS.GamePad.GetButtonHold(N3dsButton.R) && UnityEngine.N3DS.GamePad.GetButtonHold(N3dsButton.Start));
+			isPressClose = (UnityEngine.N3DS.GamePad.GetButtonHold (N3dsButton.L) && UnityEngine.N3DS.GamePad.GetButtonHold (N3dsButton.Start));
 		#endif
 		if(hasRequestedOpen) { 
 			isPressOpen = true;
@@ -105,11 +105,6 @@ public class scr_devMenu: MonoBehaviour {
 				{
 					switch(selection-4){
 					case 0:
-						isOpen = false;
-						ResetVal();
-						SceneManager.LoadScene ("scn_menuTitle");
-						break;
-					case 1:
 						submenu = true;
 						if (canSelect) {
 							isOpen = false;
@@ -142,6 +137,11 @@ public class scr_devMenu: MonoBehaviour {
 						}
 						maxOption = 10;
 						canSelect = true;
+						break;
+					case 1:
+						isOpen = false;
+						ResetVal();
+						SceneManager.LoadScene ("scn_menuTitle");
 						break;
 					case 2:
 						submenu=true;
@@ -203,12 +203,12 @@ public class scr_devMenu: MonoBehaviour {
 
 	void OnGUI(){
 		if(isOpen){
-			DoPrint (0, "SMO3DS DEV MENU - TEAM ALPHA'S MODDIMATION", 1);
+			DoPrint (0, "SMO3DS DBG MENU - T.ALPHA'S MODDIMATION", 1);
 			DoPrint (1, ver, 1);
-			DoPrint (2, "Controls: A=Enter, B=Back, R+Start=Exit Menu, DPAD=Moves", 1);
+			DoPrint (2, "Control: A=OK, B=Back, L+Start=Exit, DPAD=Move", 1);
 			if(submenu){
 				switch (selection - 4) {
-				case 1:
+				case 0:
 					DoPrint (selectionSub, " > ", 1, 40);
 					DoPrint (3, "Map Select", 1);
 					DoPrint (4, "TestMap0-Basic", 15);
@@ -234,8 +234,8 @@ public class scr_devMenu: MonoBehaviour {
 			} else {
 				DoPrint (selection, " > ", 1, 40);
 				DoPrint (3, "Main Menu", 1);
-				DoPrint (4, "Load Title Screen", 15);
-				DoPrint (5, "Map Select", 15);
+				DoPrint (4, "Map Select", 15);
+				DoPrint (5, "Load Title Screen", 15);
 				DoPrint (6, "Debug Settings", 15);
 				DoPrint (7, "Enter Sound Test", 15);
 				DoPrint (8, "Save Game", 15);

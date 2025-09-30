@@ -134,7 +134,9 @@ public class MarioEvent : MonoBehaviour
                         MarioCam.s.confIsWallBlock = false;
                         MarioCam.s.SetTransPl(true);
 
-						mario.SetAnim("demoShineGet", 0, -1, true, true);
+                        mario.isInputBlocked = true;
+
+			mario.SetAnim("demoShineGet", 0, -1, true, true);
                         if (mario.isHacking)
                         {
                             mario.SetVisible(true);
@@ -171,6 +173,9 @@ public class MarioEvent : MonoBehaviour
                             cappy.transform.GetChild(1).gameObject.layer = 18;
                             cappy.objCappyEyes.SetActive(true);
                         }
+                        
+
+                        mario.isInputBlocked = false;
                         SetDelayEvent(3, myEvent, 4);
 
                         GoToPrevEvent(true);

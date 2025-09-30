@@ -26,14 +26,14 @@ public class scrMenuTitle : MonoBehaviour {
 	{
 		switch (button)
 		{
-			case 0:
-				LoadScene("scn_capMain0");
+			case 0+1:
+				//LoadScene("scn_capMain0");
 				break;
-			case 1:
-				LoadScene("scn_test0");
+			case 1-1:
+				scr_main.s.GetComponent<scr_devMenu>().OpenMenu();
 				break;
 			case 2:
-				SceneManager.LoadScene("scn_menuConfig", LoadSceneMode.Additive);
+				//SceneManager.LoadScene("scn_menuConfig", LoadSceneMode.Additive);
 				break;
 		}
 	}
