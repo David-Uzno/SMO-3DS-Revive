@@ -1,8 +1,13 @@
-> [!NOTE]
-> **Development has stopped, game is left broken and uncomplete.**
+# Super Mario Odyssey para Nintendo 3DS - Demake
 
-Reason is that the head dev, Moddimation(me) started the codebase in a chaotic way, as this is my first Unity3D project. Now with real life and all, and a lot of performance issues caused by Unity for N3DS, i decided to step down, ultimately stopping development. You may fork and continue this at will, but please do not ask for setup instructions or any of the sort in either server or dm's. Thank you for support up until now, Moddi out.
+Este proyecto es una adaptación fiel de *Super Mario Odyssey* de Nintendo Switch para la consola **Nintendo 3DS**, desarrollado con **Unity**.
 
-Super Mario Odyssey for 3DS, unactive demake of the Switch game for 3DS.
+El objetivo principal de este proyecto es recrear la experiencia original de *Super Mario Odyssey* con la menor cantidad de modificaciones posibles, manteniendo las mecánicas de juego, niveles y características principales. Sin embargo, se han realizado ajustes mínimos necesarios para garantizar el rendimiento y la jugabilidad en la plataforma Nintendo 3DS.
 
-RELEASES: https://github.com/Team8Alpha/smo3ds-builds/releases
+> ⚠️ Este es un proyecto no oficial y sin fines de lucro. Super Mario Odyssey, sus personajes, música, arte, niveles y cualquier otro contenido relacionado son propiedad intelectual de Nintendo Co., Ltd.
+
+## Tecnologías Utilizadas
+
+- **Motor de Desarrollo:** [Unity](https://unity.com/)
+- **Lenguaje de Programación:** C#
+- **Plataforma Objetivo:** Nintendo 3DS
