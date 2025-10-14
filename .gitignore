@@ -1,43 +1,16 @@
-git_reset.bat
-out.cci
-out.cci.xml
-out.cia
-out.standard.cia
-smo3ds-builds\
-smo3ds-builds/
-zz_start_unity.bat
-SCREENSHOTS\
-SCREENSHOTS/
-cci2cia.bat
-.vs/
-.vs\
-.vscode/
-.vscode\
-Assets/.idea/
-Assets\.idea\
-mcoutput/
-mcoutput\
-WEB/
-WEB\
-LOG.txt
-cci2cia.bat
-
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-Library/ShaderCache/
-Library/ShaderCache/*/
-Library/ShaderCache/*/*
+.utmp/
 /[Ll]ibrary/
 /[Tt]emp/
-[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-/[Uu]nity[Pp]ackage[Mm]anager/
+*.log
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -88,6 +61,7 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
+*.unitypackage.meta
 *.app
 
 # Crashlytics generated file
@@ -99,8 +73,3 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-Assets/GamepadExample/GamepadScript.cs
-Assets/GamepadExample/GamepadScript.cs.meta
-Assets/GamepadExample.meta
-Assets/GamepadExample/Scene.unity.meta
-Assets/GamepadExample/Scene.unity
