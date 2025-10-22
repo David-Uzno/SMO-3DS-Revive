@@ -11,3 +11,7 @@ El objetivo principal de este proyecto es recrear la experiencia original de *Su
 - **Motor de Desarrollo:** [Unity](https://unity.com/)
 - **Lenguaje de Programación:** C#
 - **Plataforma Objetivo:** Nintendo 3DS
+
+## Comunidad
+
+Para más información, actualizaciones del proyecto, únete a nuestro servidor de Discord: https://discord.gg/VW79XukCbj
