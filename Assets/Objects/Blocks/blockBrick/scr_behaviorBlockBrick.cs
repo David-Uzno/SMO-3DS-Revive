@@ -29,7 +29,7 @@ public class scr_behaviorBlockBrick : MonoBehaviour {
 	void SpawnCoins(int numCoins) {
 		Vector3 coinSpawnPos = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
 		var coin = scr_summon.s.s_object(0, coinSpawnPos, transform.eulerAngles).GetComponent<scr_behaviorCoin>();
-		coin.currentState = 1;
+		coin.CurrentState = CoinState.Collected;
 	}
 
 	void Update() {

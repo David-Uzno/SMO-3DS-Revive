@@ -2,42 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_behaviorCoin : MonoBehaviour {
+public enum CoinState { Idle, Collected }
 
-	public int currentState = 0;
-	Animator anim;
+public class scr_behaviorCoin : MonoBehaviour
+{
+	public CoinState CurrentState = CoinState.Idle;
+	private Animator _coinAnimator;
+	private GameObject _coinChildMesh;
 
-	GameObject childMesh; // Reference to the child mesh GameObject
-
-	void Start ()
+	private void Start()
 	{
-		childMesh = transform.GetChild(0).gameObject;
-		anim = childMesh.GetComponent<Animator> ();
-		if (currentState == 1)
+		_coinChildMesh = transform.GetChild(0).gameObject;
+		_coinAnimator = _coinChildMesh.GetComponent<Animator>();
+
+		if (CurrentState == CoinState.Collected)
 		{
-			//anim.Play("collect");
-			scr_main.s.coinsCount++;//add coin to global
-			scr_manAudio.s.PlaySND(eSnd.CoinCollect);
-			transform.GetComponent<Collider>().enabled = false;
-			doKill();
+			CollectCoin();
 		}
-		else this.enabled = false;
+		else
+		{
+			this.enabled = false;
+		}
 	}
 
-	void doKill(){
-		Destroy (gameObject);
+	private void Update()
+	{
+		CheckAnimationEnd();
 	}
 
-	void OnTouch(int numType) {
-		if (currentState == 0) if (numType == 1 || numType == 2) {
-				scr_main.s.coinsCount++;//add coin to global
-				scr_manAudio.s.PlaySND(eSnd.CoinCollect);
-				scr_manageEffect.s.Play("prt_coinSpark0", transform.position, transform.rotation, "prt_coinSpark1");
-				doKill();
-			}
+	private void CheckAnimationEnd()
+	{
+		if (_coinAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+		{
+			Destroy(gameObject);
+		}
 	}
-	void Update()
-    {
-		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) doKill();
-    }
+
+	private void OnTouch(int coinTouchType)
+	{
+		if (CurrentState == CoinState.Idle && (coinTouchType == 1 || coinTouchType == 2))
+		{
+			CollectCoin();
+		}
+	}
+
+	private void CollectCoin()
+	{
+		HandleCoinCollectEffects();
+		HandleCoinCollectAnimation();
+		CurrentState = CoinState.Collected;
+	}
+
+	private void HandleCoinCollectEffects()
+	{
+		scr_main.s.coinsCount++; // Añadir moneda al conteo global
+		scr_manAudio.s.PlaySND(eSnd.CoinCollect);
+        scr_manageEffect.s.Play("prt_coinSpark0", transform.position, transform.rotation, "prt_coinSpark1");
+	}
+
+	private void HandleCoinCollectAnimation()
+	{
+        transform.GetComponent<Collider>().enabled = false;
+        _coinAnimator.Play("collect"); // Animación incompleta
+	}
 }
