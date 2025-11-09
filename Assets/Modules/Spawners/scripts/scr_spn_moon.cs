@@ -24,8 +24,8 @@ public class scr_spn_moon : MonoBehaviour {
 	void Update () {
 		GameObject obj = scr_summon.s.s_object(6, transform.position, transform.eulerAngles).gameObject;
 		scr_behaviorMoon scr = obj.GetComponent<scr_behaviorMoon>();
-		scr.moonName=moonName;
-		scr.color = (int) color;
+		scr.MoonName=moonName;
+		scr.MoonColor = (int) color;
 		Destroy(gameObject);
 	}
 }
