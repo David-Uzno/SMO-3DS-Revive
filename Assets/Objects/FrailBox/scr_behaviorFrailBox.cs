@@ -2,53 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_behaviorFrailBox : MonoBehaviour {
+public class scr_behaviorFrailBox : MonoBehaviour
+{
+    private Animator frailBoxAnimator;
+    private int currentState = 0;
+    private int hitCount = 0;
+    [SerializeField] private int _hitMax = 14;
 
-	Animator anim;
-	int currentState;
-	int hitCount;
-	int hitMax = 14;
-	void Start () {
-		anim = GetComponent<Animator> ();
-		this.enabled = false;
-	}
-	public void OnTouch(int num){
-		if (num == 1) {
-			hitCount++;
-			toBreak ();
-		}
-	}
+    private void Start()
+    {
+        InitializeComponents();
+    }
 
-	void Update(){
-		transform.Translate (0, -0.1f, 0);
-	}
-	void OnSensorGroundEnter(Collider coll){
-		if (coll.gameObject.layer != 20)
-			this.enabled = false;
-	}
-	void OnSensorGroundExit(Collider coll){
-		if (coll.gameObject.layer != 20)
-			this.enabled = true;
-	}
+    private void InitializeComponents()
+    {
+        frailBoxAnimator = GetComponent<Animator>();
+    }
 
-	void toBreak(){
-		hitCount = 0;
-		anim.CrossFade ("damage", 0.1f);
-		switch (currentState) {
-		case 1://1
-			transform.GetChild (1).GetChild (0).gameObject.SetActive (false);
-			transform.GetChild (1).GetChild (1).gameObject.SetActive (true);
-			transform.GetChild (1).GetChild (2).gameObject.SetActive (true);
-			break;
-		case 2://2
-			transform.GetChild (1).GetChild (1).gameObject.SetActive (false);
-			hitCount = hitMax-2;
-			break;
-		case 3:
-			GameObject.Instantiate (Resources.Load<GameObject> ("Objects/objFrailBoxTrace"), transform.position, transform.rotation);
-			Destroy (gameObject);
-			break;
-		}
-		currentState++;
-	}
+    public void OnTouch(int touchType)
+    {
+        if (touchType == 1)
+        {
+            hitCount++;
+            HandleBreak();
+        }
+    }
+
+    private void HandleBreak()
+    {
+        hitCount = 0;
+        PlayDamageAnimation();
+
+        switch (currentState)
+        {
+            case 1:
+                SetBoxState1();
+                break;
+            case 2:
+                SetBoxState2();
+                break;
+            case 3:
+                DestroyBox();
+                break;
+        }
+        currentState++;
+    }
+
+    private void PlayDamageAnimation()
+    {
+        if (frailBoxAnimator != null)
+            frailBoxAnimator.CrossFade("damage", 0.1f);
+    }
+
+    private void SetBoxState1()
+    {
+        Transform boxParts = transform.GetChild(1);
+        boxParts.GetChild(0).gameObject.SetActive(false);
+        boxParts.GetChild(1).gameObject.SetActive(true);
+        boxParts.GetChild(2).gameObject.SetActive(true);
+    }
+
+    private void SetBoxState2()
+    {
+        Transform boxParts = transform.GetChild(1);
+        boxParts.GetChild(1).gameObject.SetActive(false);
+        hitCount = _hitMax - 2;
+    }
+
+    private void DestroyBox()
+    {
+        Instantiate(Resources.Load<GameObject>("Objects/objFrailBoxTrace"), transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
 }
