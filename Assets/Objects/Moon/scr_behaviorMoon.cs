@@ -10,16 +10,16 @@ public class scr_behaviorMoon : MonoBehaviour
     public int MoonColor = 0;
 
     private float _rotateAddition = 0f;
-    private Animator _animator;
-    private AudioSource _audioSource;
-    private SkinnedMeshRenderer _meshRenderer;
+    private Animator _moonAnimator;
+    private AudioSource _moonAudioSource;
+    private SkinnedMeshRenderer _moonMeshRenderer;
 
     #region Unity Methods
     private void Start()
     {
         InitializeComponents();
         ApplyMoonColor();
-        scr_manAudio.s.PlaySelfSND(ref _audioSource, eSnd.MoonNearby, true, false, 0.6f);
+        scr_manAudio.s.PlaySelfSND(ref _moonAudioSource, eSnd.MoonNearby, true, false, 0.6f);
     }
 
     private void Update()
@@ -32,9 +32,9 @@ public class scr_behaviorMoon : MonoBehaviour
     #region Initialization
     private void InitializeComponents()
     {
-        _animator = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
-        _meshRenderer = transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        _moonAnimator = GetComponent<Animator>();
+        _moonAudioSource = GetComponent<AudioSource>();
+        _moonMeshRenderer = transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>();
     }
     #endregion
 
@@ -56,8 +56,8 @@ public class scr_behaviorMoon : MonoBehaviour
 
     private void ApplyMoonColor()
     {
-        _meshRenderer.material.SetColor("_Color", GetMoonColor(MoonColor));
-        _meshRenderer.material.SetColor("_SpecColor", GetMoonFresnelColor(MoonColor));
+        _moonMeshRenderer.material.SetColor("_Color", GetMoonColor(MoonColor));
+        _moonMeshRenderer.material.SetColor("_SpecColor", GetMoonFresnelColor(MoonColor));
     }
 
     private Color GetMoonColor(int moonColorIndex)
@@ -111,13 +111,13 @@ public class scr_behaviorMoon : MonoBehaviour
     private void DisableMoonComponents()
     {
         GetComponent<Collider>().enabled = false;
-        _audioSource.enabled = false;
+        _moonAudioSource.enabled = false;
         MarioEvent.s.SetEvent(eEventPl.demoMoon);
     }
 
     private void AnimateAndMoveMoon()
     {
-        _animator.Play("get");
+        _moonAnimator.Play("get");
         Transform marioTransform = MarioController.s.transform;
         transform.position = marioTransform.position;
         transform.rotation = marioTransform.rotation;
