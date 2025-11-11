@@ -161,10 +161,10 @@ public class scr_behaviorGoomba : MonoBehaviour {
 		}
 	}
 
-	public void OnCapTrigger(){
+	public void OnCappyTrigger(){
 		scr_main.s.capMountPoint = "Armature/nw4f_root/AllRoot/JointRoot/Head/Cap/mount";
 	}
-	public void OnCapHacked(){
+	public void OnCappyHacked(){
 		MarioController.s.cappy.SetTransformOffset(1.5f, Vector3.zero, Vector3.zero);
 	}
 	public void OnSensorEnter(Collider col){
