@@ -45,10 +45,10 @@ public class scr_behaviorFrog : MonoBehaviour {
 		if (num == 3)
 			anim.Play ("reaction");
 	}
-	public void OnCapTrigger(){
+	public void OnCappyTrigger(){
 		scr_main.s.capMountPoint = capMount;
 	}
-	public void OnCapHacked(){
+	public void OnCappyHacked(){
 		gameObject.tag = "captureMe";
 		MarioController.s.cappy.SetTransformOffset (1.15f, new Vector3(0, 0, -0.1f), new Vector3(0, -119.16f, 90));
 	}

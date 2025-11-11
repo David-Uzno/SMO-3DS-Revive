@@ -16,7 +16,7 @@ public class scr_behaviorCapSwitch : MonoBehaviour{
 	public void OnTouch(int num){
 		if(num == 1) scr_main.s.capMountPoint = capMount;
 	}
-	public void OnCapHacked(){//CAP!
+	public void OnCappyHacked(){//CAP!
 		//MarioController.s.cappy.headHeight = 0f;
 		//MarioController.s.cappy.hackScale = 2f;
 		//MarioController.s.cappy.hackRot = new Vector3 (0, 0, 90);

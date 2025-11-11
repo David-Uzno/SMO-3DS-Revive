@@ -272,7 +272,7 @@ public class scrBehaviorCappy : MonoBehaviour
         if ((objParam = collis.gameObject.GetComponent<paramObj>()) == null) return;
         if (objParam.isTouch) collis.gameObject.SendMessage("OnTouch", 1);
         if (!objParam.isCapTrigger || isHacking) return;
-        else collis.gameObject.SendMessage("OnCapTrigger");
+        else collis.gameObject.SendMessage("OnCappyTrigger");
         mountpoint = collis.transform.Find(scr_main.s.capMountPoint);
         if (mountpoint == null)
         {
@@ -287,7 +287,7 @@ public class scrBehaviorCappy : MonoBehaviour
         SetParent(mountpoint, true);
         SetCollision(false);
 
-        hackedObj.SendMessage("OnCapHacked"); //send OnCapHacked call to object
+        hackedObj.SendMessage("OnCappyHacked"); //send OnCappyHacked call to object
         if (objParam.isHack) MarioEvent.s.SetEvent(eEventPl.hack);
         else mAnim.Play("hookStart");
 
