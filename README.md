@@ -14,4 +14,4 @@ El objetivo principal es recrear la experiencia original de *Super Mario Odyssey
 
 ## Comunidad
 
-Para más información, actualizaciones del proyecto, únete a nuestro servidor de Discord: https://discord.gg/VW79XukCbj
+Para más información, actualizaciones del proyecto, unite a nuestro servidor de Discord: https://discord.gg/VW79XukCbj
