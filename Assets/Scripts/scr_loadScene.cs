@@ -1,60 +1,144 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class scr_loadScene : MonoBehaviour {
-	
+public class scr_loadScene : MonoBehaviour
+{
 	[HideInInspector] public static scr_loadScene s;
+	public static scr_loadScene Instance { get; private set; }
+
 	[HideInInspector] public string nextScene = "scn_menuTitle";
 	[HideInInspector] public bool isDone = false;
-	AsyncOperation loadOP;
+	private AsyncOperation _loadOP;
 
-    //List<GameObject> rootObjects = new List<GameObject>();
+	public enum TransitionType
+	{
+		Direct = 0,
+		Ship = 1,
+		CapFly = 2,
+		Async = 3
+	}
 
-    void Start(){ s = this; }
-	public void StartScene(string sceneName, int transition = 0){
+    private void Start()
+	{
+		// Inicialización del singleton
+		Instance = this;
+		s = this; // Compatibilidad hacia atrás
+	}
+
+	public void StartScene(string sceneName, int transition = 0)
+	{
 		isDone = false;
+		ConfigureSceneStart(sceneName);
 
-		//GetComponent<AudioListener>().enabled = true;
+		TransitionType t = (TransitionType)Mathf.Clamp(transition, 0, System.Enum.GetNames(typeof(TransitionType)).Length - 1);
+		ExecuteTransition(t);
+	}
+
+	private void ConfigureSceneStart(string sceneName)
+	{
 		scr_main.s.hasLevelLoaded = false;
 		nextScene = sceneName;
 		scr_main.s.dbg_enemyCount = 0;
+		scr_main.DPrint("nSCN: " + nextScene);
+	}
 
-		scr_main.DPrint ("nSCN: " + nextScene);
-		switch (transition) {
-		case 0: //direct, no transition
-			SceneManager.LoadScene (sceneName);
-			break;
-		case 1: //flying ship line
-			scr_main.s.SetFocus(false);
-			SceneManager.LoadScene ("scn_loadShip");
-			nextScene = sceneName;
-				//wip
-			break;
-		case 2://cap fly transition
-			scr_main.s.transform.GetChild (1).GetChild (2).gameObject.SetActive (true);
-            break;
-		case 3: //async  (need to unload old one manually when needed)
-            StartCoroutine (loadAsync ());
-			break;
+	private void ExecuteTransition(TransitionType t)
+	{
+		switch (t)
+		{
+			case TransitionType.Direct:
+				// Carga directa sin transición
+				SceneManager.LoadScene(nextScene);
+				break;
+
+			case TransitionType.Ship:
+				// Transición: cargar escena intermedia del barco
+				scr_main.s.SetFocus(false);
+				SceneManager.LoadScene("scn_loadShip");
+				// nextScene ya establecido
+				break;
+
+			case TransitionType.CapFly:
+				// Activar objeto de transición (asegurar que el índice exista)
+				Transform tParent = scr_main.s.transform;
+				if (tParent.childCount > 1 && tParent.GetChild(1).childCount > 2)
+				{
+					tParent.GetChild(1).GetChild(2).gameObject.SetActive(true);
+				}
+				else
+				{
+					scr_main.DPrint("CapFly transition: estructura esperada no encontrada.", false);
+				}
+				break;
+
+			case TransitionType.Async:
+				StartAsyncLoad();
+				break;
 		}
 	}
-	IEnumerator loadAsync(){
-		loadOP = SceneManager.LoadSceneAsync (nextScene, LoadSceneMode.Additive);
-		loadOP.allowSceneActivation = false;
-		while (!loadOP.isDone) {
-			scr_main.DPrint ("loading: " + (loadOP.progress*100) + "%", false);
+
+	private void StartAsyncLoad()
+	{
+		StartCoroutine(LoadAsync());
+	}
+
+	private IEnumerator LoadAsync()
+	{
+		if (!PrepareAsyncLoad())
+			yield break;
+
+		while (!_loadOP.isDone)
+		{
+			ReportAsyncProgress();
 			yield return null;
 		}
-		scr_main.DPrint ("loading: 100%");
+
+		FinalizeAsyncLoad();
+	}
+
+	private bool PrepareAsyncLoad()
+	{
+		if (string.IsNullOrEmpty(nextScene))
+		{
+			scr_main.DPrint("LoadAsync: nextScene no está configurada.", false);
+			return false;
+		}
+
+		_loadOP = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
+		_loadOP.allowSceneActivation = false;
+		return true;
+	}
+
+	private void ReportAsyncProgress()
+	{
+		float scaledProgress = (_loadOP.progress < 0.9f) ? (_loadOP.progress / 0.9f) : 1f;
+		int percent = Mathf.RoundToInt(scaledProgress * 100f);
+		scr_main.DPrint("loading: " + percent + "%", false);
+	}
+
+	private void FinalizeAsyncLoad()
+	{
+		scr_main.DPrint("loading: 100%");
 		isDone = true;
+
 		Scene loaded = SceneManager.GetSceneByName(nextScene);
-		if (loaded.IsValid()) {
+		if (loaded.IsValid())
+		{
 			SceneManager.SetActiveScene(loaded);
 		}
+		else
+		{
+			scr_main.DPrint("LoadAsync: escena cargada no es válida: " + nextScene, false);
+		}
 	}
-	public void SetSceneActive(){
-		loadOP.allowSceneActivation = true;
+
+	public void SetSceneActive()
+	{
+		if (_loadOP == null) {
+			scr_main.DPrint("SetSceneActive: no hay operación de carga en curso.", false);
+			return;
+		}
+		_loadOP.allowSceneActivation = true;
 	}
 }
