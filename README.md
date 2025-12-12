@@ -8,7 +8,7 @@ El objetivo principal de este proyecto es recrear la experiencia original de *Su
 
 ## Tecnologías Utilizadas
 
-- **Motor de Desarrollo:** [Unity 5.6.6f2](https://unity.com/)
+- **Motor de Desarrollo:** [Unity](https://unity.com/) (5.6.6f2)
 - **Lenguaje de Programación:** C#
 - **Plataforma Objetivo:** Nintendo 3DS
 
