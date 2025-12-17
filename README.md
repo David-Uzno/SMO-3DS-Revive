@@ -12,6 +12,11 @@ El objetivo principal de este proyecto es recrear la experiencia original de *Su
 - **Lenguaje de Programación:** C#
 - **Plataforma Objetivo:** Nintendo 3DS
 
+## Descargas
+
+Los enlaces de descarga de las versiones jugables **no se publican directamente en este repositorio**.  
+Todas las actualizaciones estarán disponibles exclusivamente a través del servidor oficial de Discord del proyecto.
+
 ## Comunidad
 
 Para más información, actualizaciones del proyecto, únete a nuestro servidor de Discord: https://discord.gg/VW79XukCbj
