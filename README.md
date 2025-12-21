@@ -32,7 +32,7 @@ El objetivo principal es recrear la experiencia original de *Super Mario Odyssey
 - [ ] Eliminar código redundante, comentado o sin uso.
 - [ ] Separar responsabilidades.
 - [ ] Crear documentación básica.
-- [✅] Actualizar el README.
+- [X] Actualizar el README.
 
 ### Etapa 2 – Coleccionables
 🎯 **Objetivo:** Implementar los elementos básicos de recolección del juego.
@@ -114,7 +114,7 @@ The main objective is to recreate the original *Super Mario Odyssey™* experien
 - [ ] Remove redundant, commented, or unused code.
 - [ ] Separate responsibilities.
 - [ ] Create basic documentation.
-- [✅] Update the README.
+- [X] Update the README.
 
 ### Stage 2 – Collectibles
 🎯 **Objective:** Implement the game’s basic collectible elements.
