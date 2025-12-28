@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 # Super Mario Odyssey™ para Nintendo 3DS™ – Demake  
 **Versión: Alpha 0.5 (a0.5)**  
 (Español 🇲🇽)
+=======
+# Super Mario Odyssey para Nintendo 3DS - Demake
+>>>>>>> parent of c46d1d2 (Updated README by adding an English section, correcting gramatical errors, and fixing/adding correctly placed ™/© symbols.)
 
-Este proyecto es una adaptación fiel de *Super Mario Odyssey™* de *Nintendo Switch™* para la consola **Nintendo 3DS™**, desarrollado con **Unity**.
+Este proyecto es una adaptación fiel de *Super Mario Odyssey* de Nintendo Switch para la consola **Nintendo 3DS**, desarrollado con **Unity**.
 
-El objetivo principal es recrear la experiencia original de *Super Mario Odyssey™* con la menor cantidad de modificaciones posibles, manteniendo las mecánicas de juego, niveles y características principales. Sin embargo, se han realizado ajustes mínimos necesarios para garantizar el rendimiento y la jugabilidad en la plataforma Nintendo 3DS™.
+El objetivo principal es recrear la experiencia original de *Super Mario Odyssey* con la menor cantidad de modificaciones posibles, manteniendo las mecánicas de juego, niveles y características principales. Sin embargo, se han realizado ajustes mínimos necesarios para garantizar el rendimiento y la jugabilidad en la plataforma Nintendo 3DS.
 
-> ⚠️ Este es un proyecto no oficial y sin fines de lucro. *Super Mario Odyssey™*, sus personajes, música, arte, niveles y cualquier otro contenido relacionado son propiedad intelectual de **Nintendo Co., Ltd.**
+> ⚠️ Este es un proyecto no oficial y sin fines de lucro. Super Mario Odyssey, sus personajes, música, arte, niveles y cualquier otro contenido relacionado son propiedad intelectual de Nintendo Co., Ltd.
 
 ---
 
@@ -14,10 +18,11 @@ El objetivo principal es recrear la experiencia original de *Super Mario Odyssey
 
 - **Motor de Desarrollo:** [Unity](https://unity.com/)
 - **Lenguaje de Programación:** C#
-- **Plataforma Objetivo:** Nintendo 3DS™
+- **Plataforma Objetivo:** Nintendo 3DS
 
 ---
 
+<<<<<<< HEAD
 ## Roadmap  
 **Alpha 0.5 → 0.6** — Completado  
 - [ ] Alpha 0.6 completada
@@ -159,3 +164,6 @@ The main objective is to recreate the original *Super Mario Odyssey™* experien
 
 For more information and project updates, join our Discord server:  
 https://discord.gg/VW79XukCbj
+=======
+Para más información, actualizaciones del proyecto, unite a nuestro servidor de Discord: https://discord.gg/VW79XukCbj
+>>>>>>> parent of c46d1d2 (Updated README by adding an English section, correcting gramatical errors, and fixing/adding correctly placed ™/© symbols.)
