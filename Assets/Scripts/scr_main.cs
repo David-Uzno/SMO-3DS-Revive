@@ -8,9 +8,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class scr_main : MonoBehaviour {
-
-	// Initialization script for Super Mario Odyssey for 3ds, made by Team Alpha.
-	public string version = "0.5";
+	
+	private const string version = "0.5"; //Linea cambiads por Markut
+	//Es necesario que en el runtime no se cambie la versipn del juego, seria casi imposible modificarlo
 
 	//constants
 	[HideInInspector] public static scr_main s;
@@ -57,12 +57,13 @@ public class scr_main : MonoBehaviour {
 		}
 	}
 
-	void Reset()
+	/*void Reset()
 	{
-		OnEnable ();
-	}
+    OnEnable();
+	}*/
+	//Linea eliminada por Markut, no es necesario la funcion Reset mala pratica debido a que se puede duplicar inicializaciónes o  seguir ejecutandose en el runtime
+	
 	void OnEnable(){
-		version = "0.5";
 		if(s == null)
 		{
 			Debug.ClearDeveloperConsole ();
@@ -77,8 +78,12 @@ public class scr_main : MonoBehaviour {
 	}
 	
 	void Init () {
-		Application.targetFrameRate = 30;
-		QualitySettings.vSyncCount = 0;
+		
+		/* Linea de codigo eliminada por Markut (No es necesario forzar los FPS o VSync es una mala practica en programacion)
+		//Application.targetFrameRate = 30;
+		//QualitySettings.vSyncCount = 0;
+		*/
+		
 		//UnityEngine.N3DS.HomeButton.Enable ();
 
 		stl_debug = new GUIStyle();
