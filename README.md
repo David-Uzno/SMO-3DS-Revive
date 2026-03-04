@@ -17,4 +17,4 @@ Los enlaces de descarga de las versiones jugables **no se publican directamente 
 Todas las actualizaciones estarán disponibles exclusivamente a través del servidor oficial de Discord del proyecto.
 
 ## Comunidad
-Para más información, actualizaciones de este u otros proyectos, unite a mi servidor de Discord: https://discord.gg/VW79XukCbj
+[¡Discord de Uzno Labs!](https://discord.gg/VW79XukCbj) - Servidor oficial, mantente al día con este u otros de mis proyectos.
