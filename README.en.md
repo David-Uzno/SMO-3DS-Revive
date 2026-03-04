@@ -18,4 +18,4 @@ Download links for playable versions **are not published directly in this reposi
 All updates will be available exclusively through the project's official Discord server.
 
 ## Community
-For more information, updates on this or other projects, join my Discord server: https://discord.gg/VW79XukCbj
+[Uzno Labs Discord!](https://discord.gg/VW79XukCbj) - Official server, stay up to date with this or other projects of mine.
